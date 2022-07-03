@@ -5,10 +5,10 @@ using namespace std;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(512, 512), "SFML works!");
 
     sf::Texture texture;
-    if (!texture.loadFromFile("pic.png"))
+    if (!texture.loadFromFile("board.png"))
     {
         cout << "err loading file" << endl;
     }

@@ -10,7 +10,7 @@
                 "${file}",
                 "-lsfml-graphics", "-lsfml-window", "-lsfml-system",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
