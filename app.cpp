@@ -6,12 +6,10 @@
 //   \____|_| |_|_____|____/____/ 
 //
 //  v 1.0.0                           
-
-#include <iostream>
-
-using namespace std;
+#include "cwindow.cpp"
 
 int main()
 {
-    
+    cwindow window(512, 512, "Chess");
+    window.MLoop();
 }
