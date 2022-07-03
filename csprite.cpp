@@ -18,7 +18,8 @@
 using namespace std;
 using namespace sf;
 
-class csprite {
+class csprite 
+{
 public:
 
     Texture texture;
@@ -27,10 +28,12 @@ public:
     
 };
 
-csprite::csprite(string n){
-    if(!texture.loadFromFile(n)){
+csprite::csprite(string n)
+{
+    if(!texture.loadFromFile(n))
+    {
         cout << "error texture not loaded";
     }
 
-    sprite.setTexture(texture);
+    sprite = Sprite(texture);
 }

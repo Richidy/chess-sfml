@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${fileDirname}/app.cpp",
                 "-lsfml-graphics", "-lsfml-window", "-lsfml-system",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe"

@@ -12,4 +12,6 @@ int main()
 {
     cwindow window(512, 512, "Chess");
     window.MLoop();
+
+    return 0;
 }
