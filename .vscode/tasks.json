@@ -10,7 +10,7 @@
                 "${fileDirname}/app.cpp",
                 "-lsfml-graphics", "-lsfml-window", "-lsfml-system",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.exe"
+                "${fileDirname}/chess.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"

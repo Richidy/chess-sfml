@@ -2,7 +2,7 @@
 ====================================
 ====================================
 ====================================
-                Window
+              Window
 ====================================
 ====================================
 ====================================
@@ -13,35 +13,31 @@
 - takes care of player input
 
 */
-
-#define DEBUG
+#pragma once
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "cboard.cpp"
+#include "csprite.cpp"
+#include <vector>
 
 using namespace std;
 using namespace sf;
 
-class cwindow 
+class cwindow
 {
 public :
-
-    #ifdef DEBUG
-    string boardAddress = "board.png";
-    csprite boardTexture{boardAddress};
-    #endif
 
     RenderWindow window;
     cwindow(int h, int w, string n);
     void MLoop();
 
+    vector<csprite> active_sprites;
 };
 
 cwindow::cwindow(int h, int w, string n) :
     window(VideoMode(w,h), n)
 {
-    
+
 }
 
 void cwindow::MLoop ()
@@ -57,7 +53,12 @@ void cwindow::MLoop ()
             }
         }
         window.clear();
-        window.draw(boardTexture.sprite);        
+
+        // loop through the vector and render all active sprites
+        for(int i = 0; i < active_sprites.size(); i++){
+            window.draw(active_sprites[i].sprite);
+        }
+
         window.display();
     }
 }

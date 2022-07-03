@@ -13,16 +13,24 @@
 
 */
 
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "csprite.cpp"
 
 using namespace std;
 using namespace sf;
 
-class cboard {
+class cboard 
+{
 private:
     int Square[64];
+    //TODO board class
 public:
+
+    cboard();
     
 };
+
+cboard::cboard()
+{
+}
