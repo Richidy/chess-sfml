@@ -41,10 +41,10 @@ csprite::csprite(string n, vector<csprite>& sprites_vector)
     }
 
     active_sprites = &sprites_vector;
-
     sprite = Sprite(texture);
 }
 
-void csprite::activate(){
+void csprite::activate()
+{
     active_sprites->push_back(*this);
 }

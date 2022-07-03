@@ -8,8 +8,10 @@
 
 #include "cwindow.cpp"
 #include "csprite.cpp"
+#include "cboard.cpp"
+#include "cpiece.cpp"
 
-#define DEBUG
+//#define DEBUG
 
 int main()
 {
@@ -20,6 +22,14 @@ int main()
     csprite boardSprite(boardAddress, window.active_sprites);
     boardSprite.activate();
     #endif
+
+    cboard board(window.active_sprites);
+    
+    cpiece pawn(window.active_sprites, 5, 1, 0, &board);
+    cpiece pawn2(window.active_sprites, 2, 0, 43, &board);
+    cpiece pawn3(window.active_sprites, 3, 0, 58, &board);
+    cpiece pawn4(window.active_sprites, 1, 1, 22, &board);
+
 
     window.MLoop();
 

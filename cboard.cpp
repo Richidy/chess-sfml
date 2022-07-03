@@ -16,6 +16,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "csprite.cpp"
 
 using namespace std;
 using namespace sf;
@@ -23,14 +24,33 @@ using namespace sf;
 class cboard 
 {
 private:
+
     int Square[64];
-    //TODO board class
+    string boardAddress = "board.png";
+
 public:
 
-    cboard();
+    Vector2i getpixelposition(int p);
+    csprite boardSprite;
+    cboard(vector<csprite>& v);
     
 };
 
-cboard::cboard()
+Vector2i cboard::getpixelposition(int p)
 {
+    int w = boardSprite.sprite.getTexture()->getSize().x;
+    int h = boardSprite.sprite.getTexture()->getSize().y;
+    int xsquare = w/8;
+    int ysquare = h/8;
+
+    int x = (p%8)*xsquare;
+    int y = (p/8)*ysquare;
+
+    return Vector2i(x, y);
+}
+
+cboard::cboard(vector<csprite> &v) :
+    boardSprite(boardAddress, v)
+{
+    boardSprite.activate();
 }

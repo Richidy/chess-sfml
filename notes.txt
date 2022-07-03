@@ -1,0 +1,23 @@
+yekshanbe : 
+
+doshanbe :
+
+- sprite board 
+- array board  
+- algoritm move function cpiece class 
+- sprite every piece piece
+- w/b and what piece position
+- knight piece move rule
+- queen piece move rule
+- king piece move rule
+- pawn piece move rule
+- bishop piece move rule
+- rook piece move rule
+- check rule
+- checkmate rule
+- castling rule
+- add or remove pieces
+- user input
+- game state
+
+seshanbe :
