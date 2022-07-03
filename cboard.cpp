@@ -12,3 +12,17 @@
 - 
 
 */
+
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include "csprite.cpp"
+
+using namespace std;
+using namespace sf;
+
+class cboard {
+private:
+    int Square[64];
+public:
+    
+};
