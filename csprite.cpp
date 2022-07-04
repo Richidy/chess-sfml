@@ -22,26 +22,19 @@ using namespace sf;
 class csprite
 {
 public:
-
-    Texture texture;
     Sprite sprite;
 
     vector<csprite>* active_sprites;
 
-    csprite(string, vector<csprite>& sprites_vector);
+    csprite(string, vector<csprite>& sprites_vector, const Texture& t);
     void activate();
     void deactivate();
 };
 
-csprite::csprite(string n, vector<csprite>& sprites_vector)
+csprite::csprite(string n, vector<csprite>& sprites_vector, const Texture& t)
 {
-    if(!texture.loadFromFile(n))
-    {
-        cout << "error texture not loaded";
-    }
-
     active_sprites = &sprites_vector;
-    sprite = Sprite(texture);
+    sprite.setTexture(t);
 }
 
 void csprite::activate()

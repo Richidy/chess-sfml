@@ -2,8 +2,8 @@ yekshanbe :
 
 doshanbe :
 
-- sprite board 
-- array board  
+-- sprite board 
+-- array board  
 - algoritm move function cpiece class 
 - sprite every piece piece
 - w/b and what piece position

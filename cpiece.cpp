@@ -35,21 +35,24 @@ private:
 
 public:
 
-    cboard* board;
     int _type; // 0q, 1k, 2r, 3kn, 4b, 5p
     bool color; // true white, false black
     csprite pieceSprite; 
-    cpiece(vector<csprite>& v, int t, bool c, int p, cboard* b);
+    cpiece(vector<csprite>& v, int t, int p, Vector2i pixelp, const Texture& texture);
     void movePiece();
 
 };
 
-cpiece::cpiece(vector<csprite>& v, int t, bool c, int p, cboard* b):
-    pieceSprite(pieceAddress, v)
+void cpiece::movePiece(){
+    
+}
+
+cpiece::cpiece(vector<csprite>& v, int t, int p, Vector2i pixelp, const Texture& texture):
+    pieceSprite(pieceAddress, v, texture)
 {
-    _type = t;
-    color = c;
-    board = b;
+    _type = (t/10);
+    color = (t%10);
+    position = p;
 
     // piece.png is 6 columns and 2 rows
     // 1st row black , 2nd white
@@ -59,13 +62,12 @@ cpiece::cpiece(vector<csprite>& v, int t, bool c, int p, cboard* b):
 
     int wpiece = w/6;
     int hpiece = h/2;
-    int x = wpiece*t;
-    int y = hpiece*c;
+    int x = wpiece*_type;
+    int y = hpiece*color;
 
     pieceSprite.sprite.setTextureRect(IntRect(x, y, wpiece, hpiece));
 
     position = p;
-    Vector2i pixelp = b->getpixelposition(p);
     pieceSprite.sprite.setPosition(pixelp.x, pixelp.y);
 
     pieceSprite.activate();

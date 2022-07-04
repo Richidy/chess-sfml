@@ -14,3 +14,20 @@
 - shows possible moves when piece is selected
 
 */
+
+#include <iostream>
+#include <SFML/Graphics.hpp>
+
+using namespace std;
+using namespace sf;
+
+class game {
+private:
+
+
+
+public:
+
+
+
+};

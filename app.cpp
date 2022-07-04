@@ -23,13 +23,15 @@ int main()
     boardSprite.activate();
     #endif
 
-    cboard board(window.active_sprites);
-    
-    cpiece pawn(window.active_sprites, 5, 1, 0, &board);
-    cpiece pawn2(window.active_sprites, 2, 0, 43, &board);
-    cpiece pawn3(window.active_sprites, 3, 0, 58, &board);
-    cpiece pawn4(window.active_sprites, 1, 1, 22, &board);
+    int square[64];
+    for(int i = 0; i < 64; i++){
+        square[i] = rand() % 100 > 80 ? rand() % 2 + (rand() % 6) * 10 : -1;
+    }
 
+    Texture boardTxt;
+    boardTxt.loadFromFile("board.png");
+    cboard board(window.active_sprites, boardTxt);
+    board.initialize(square, window);
 
     window.MLoop();
 
