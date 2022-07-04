@@ -50,8 +50,8 @@ void cpiece::movePiece(){
 cpiece::cpiece(vector<csprite>& v, int t, int p, Vector2i pixelp, const Texture& texture):
     pieceSprite(pieceAddress, v, texture)
 {
-    _type = (t/10);
-    color = (t%10);
+    _type = ((t-10)/10);
+    color = ((t)%10);
     position = p;
 
     // piece.png is 6 columns and 2 rows
