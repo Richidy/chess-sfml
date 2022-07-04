@@ -22,17 +22,12 @@ int main()
     csprite boardSprite(boardAddress, window.active_sprites);
     boardSprite.activate();
     #endif
-
-    int square[64];
-    for(int i = 0; i < 64; i++){
-        square[i] = rand() % 100 > 80 ? rand() % 2 + (rand() % 6) * 10 : -1;
-    }
-
     Texture boardTxt;
     boardTxt.loadFromFile("board.png");
     cboard board(window.active_sprites, boardTxt);
-    string fen = "r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1";
+    string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
     board.initialize(fen, window);
+    board.remove_piece(2, window);
 
     window.MLoop();
 

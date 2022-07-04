@@ -31,11 +31,11 @@ class cpiece {
 private:
 
     string pieceAddress = "pieces.png";
-    int position;
 
 public:
 
-    int _type; // 0q, 1k, 2r, 3kn, 4b, 5p
+    int position;
+    int _type; // 0NONE, 1q, 2k, 3r, 4kn, 5b, 6p
     bool color; // true white, false black
     csprite pieceSprite; 
     cpiece(vector<csprite>& v, int t, int p, Vector2i pixelp, const Texture& texture);

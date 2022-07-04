@@ -29,20 +29,50 @@ class cboard
 {
 private:
 
-    int state[64];
+    int state[64] = {0};
     string boardAddress = "board.png";
-    vector<cpiece> pieces_on_board;
 
 public:
 
     Vector2i getpixelposition(int p);
     cboard(vector<csprite>& v, const Texture& t);
-    void initialize(int _state[], cwindow& window);
     void initialize(string& n, cwindow& window);
-    
+
+    void remove_piece(int p, cwindow& w);
+    vector<cpiece> piece_on_board;
+
     csprite boardSprite;
     Texture piecesTexture;
+
 };
+
+void cboard::remove_piece(int p, cwindow& w)
+{   
+    state[p] = 0;
+    for(int i = 0; i < piece_on_board.size(); i++)
+    {
+        if(piece_on_board[i].position == p)
+        {
+            piece_on_board[i].pieceSprite.deactivate();
+            piece_on_board.erase(piece_on_board.begin() + i);
+            break;
+        }
+    }
+}
+
+Vector2i cboard::getpixelposition(int p)
+{
+    int w = boardSprite.sprite.getTexture()->getSize().x;
+    int h = boardSprite.sprite.getTexture()->getSize().y;
+    int xsquare = w/8;
+    int ysquare = h/8;
+
+    int x = (p%8)*xsquare;
+    int y = (p/8)*ysquare;
+
+    return Vector2i(x, y);
+}
+
 
 void cboard::initialize(string& fen, cwindow& window)
 {
@@ -50,10 +80,9 @@ void cboard::initialize(string& fen, cwindow& window)
     size_t iter = 0;
     int index = 0;
     int piece_type;
-    int fen_board[64] = {0};
 
     // parse the board first
-    for (; (iter < size) and (fen[iter] != ' '); iter++)
+    for (; (iter < size) && (fen[iter] != ' '); iter++)
     {
         if (fen[iter] == '/')
             continue;
@@ -102,7 +131,7 @@ void cboard::initialize(string& fen, cwindow& window)
             case 'P': piece_type = 61;
                 break;
             }
-            fen_board[index] = piece_type;
+            state[index] = piece_type;
             ++index;
         }
     }
@@ -111,46 +140,19 @@ void cboard::initialize(string& fen, cwindow& window)
 
     for(int i = 0; i < 64; i++)
     {
-        if(fen_board[i] != 0)
+        if(state[i] != 0)
         {
-            cpiece (
-                window.active_sprites,
-                fen_board[i],
-                i,
-                getpixelposition(i),
-                piecesTexture
+            piece_on_board.push_back(
+                cpiece (
+                    window.active_sprites, 
+                    state[i], 
+                    i, 
+                    getpixelposition(i), 
+                    piecesTexture
+                )
             );
         }
     }
-}
-
-void cboard:: initialize(int _state[], cwindow& window)
-{
-    for(int i = 0; i < 64; i++){
-        state[i] = _state[i];
-        if(state[i] != -1){
-            cpiece(
-                window.active_sprites,
-                _state[i],
-                i,
-                getpixelposition(i),
-                piecesTexture
-            );
-        }
-    }
-}
-
-Vector2i cboard::getpixelposition(int p)
-{
-    int w = boardSprite.sprite.getTexture()->getSize().x;
-    int h = boardSprite.sprite.getTexture()->getSize().y;
-    int xsquare = w/8;
-    int ysquare = h/8;
-
-    int x = (p%8)*xsquare;
-    int y = (p/8)*ysquare;
-
-    return Vector2i(x, y);
 }
 
 cboard::cboard(vector<csprite> &v, const Texture& t):
