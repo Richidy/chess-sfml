@@ -39,10 +39,16 @@ public:
     cboard(vector<csprite>& v, const Texture& t);
     void initialize(int _state[], cwindow& window);
     void initialize(string& n, cwindow& window);
+    void handle_click(Vector2i p);
     
     csprite boardSprite;
     Texture piecesTexture;
 };
+
+void cboard::handle_click(Vector2i p){
+    cout << p.x << ", " << p.y << endl;
+    
+}
 
 void cboard::initialize(string& fen, cwindow& window)
 {
