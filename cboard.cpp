@@ -40,19 +40,26 @@ public:
     void handle_click(Vector2i p);
     
 
-    void remove_piece(int p, cwindow& w);
+    void remove_piece(int p);
     vector<cpiece> piece_on_board;
 
     csprite boardSprite;
     Texture piecesTexture;
 
+    int xsquare, ysquare;
+
 };
 
 void cboard::handle_click(Vector2i p){
-    cout << p.x << ", " << p.y << endl;
+    int x = p.x / 64;
+    int y = p.y / 64;
+
+    cout << p.x << ", " << p.y <<"   ";
+    cout << x << ", " << y << " = " << y * 8 + x << endl;
+    remove_piece(y * 8 + x);
 }
 
-void cboard::remove_piece(int p, cwindow& w)
+void cboard::remove_piece(int p)
 {   
     for(int i = 0; i < piece_on_board.size(); i++)
     {
@@ -69,8 +76,8 @@ Vector2i cboard::getpixelposition(int p)
 {
     int w = boardSprite.sprite.getTexture()->getSize().x;
     int h = boardSprite.sprite.getTexture()->getSize().y;
-    int xsquare = w/8;
-    int ysquare = h/8;
+    xsquare = w/8;
+    ysquare = h/8;
 
     int x = (p%8)*xsquare;
     int y = (p/8)*ysquare;
@@ -81,6 +88,7 @@ Vector2i cboard::getpixelposition(int p)
 
 void cboard::initialize(string& fen, cwindow& window)
 {
+    size_t size = fen.size();
     size_t iter = 0;
     int index = 0;
     int piece_type;

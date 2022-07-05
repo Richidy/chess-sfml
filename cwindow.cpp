@@ -65,7 +65,7 @@ void cwindow::MLoop ()
         {
             if(!isDown){
                 isDown = true;
-                Vector2i p = Mouse::getPosition();
+                Vector2i p = Mouse::getPosition() - window.getPosition();
                 (*clickhandler)(p);
             }
         }else if(isDown){
