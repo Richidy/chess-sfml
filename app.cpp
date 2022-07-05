@@ -28,12 +28,6 @@ int main()
     csprite boardSprite(boardAddress, window.active_sprites);
     boardSprite.activate();
     #endif
-
-    int square[64];
-    for(int i = 0; i < 64; i++){
-        square[i] = rand() % 100 > 80 ? rand() % 2 + (rand() % 6) * 10 : -1;
-    }
-
     Texture boardTxt;
     boardTxt.loadFromFile("board.png");
     cboard theboard(window.active_sprites, boardTxt);
