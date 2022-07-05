@@ -31,6 +31,8 @@ public :
     cwindow(int h, int w, string n);
     void MLoop();
 
+    bool is_piece_chosen = false;
+
     vector<csprite> active_sprites;
     void (*clickhandler)(Vector2i p);
     bool isDown;
@@ -71,6 +73,8 @@ void cwindow::MLoop ()
         }else if(isDown){
             isDown = false;
         }
+
+
 
         window.display();
     }

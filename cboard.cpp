@@ -38,7 +38,6 @@ public:
     cboard(vector<csprite>& v, const Texture& t);
     void initialize(string& n, cwindow& window);
     void handle_click(Vector2i p);
-    
 
     void remove_piece(int p);
     vector<cpiece> piece_on_board;
@@ -53,10 +52,18 @@ public:
 void cboard::handle_click(Vector2i p){
     int x = p.x / 64;
     int y = p.y / 64;
+    int pose = y * 8 + x;
 
     cout << p.x << ", " << p.y <<"   ";
     cout << x << ", " << y << " = " << y * 8 + x << endl;
-    remove_piece(y * 8 + x);
+
+    for(int i = 0; i < piece_on_board.size(); i++)
+    {
+        if(piece_on_board[i].position == pose)
+        {
+         remove_piece(pose);
+        }
+    }
 }
 
 void cboard::remove_piece(int p)
