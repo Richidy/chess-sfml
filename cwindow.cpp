@@ -17,8 +17,8 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "csprite.cpp"
 #include <vector>
+#include "csprite.cpp"
 
 using namespace std;
 using namespace sf;
@@ -32,12 +32,14 @@ public :
     void MLoop();
 
     vector<csprite> active_sprites;
+    void (*clickhandler)(Vector2i p);
+    bool isDown;
 };
 
 cwindow::cwindow(int h, int w, string n) :
     window(VideoMode(w,h), n)
 {
-
+    isDown = false;
 }
 
 void cwindow::MLoop ()
@@ -57,6 +59,17 @@ void cwindow::MLoop ()
         // loop through the vector and render all active sprites
         for(int i = 0; i < active_sprites.size(); i++){
             window.draw(active_sprites[i].sprite);
+        }
+        // check for clicks
+        if(Mouse::isButtonPressed(Mouse::Left))
+        {
+            if(!isDown){
+                isDown = true;
+                Vector2i p = Mouse::getPosition();
+                (*clickhandler)(p);
+            }
+        }else if(isDown){
+            isDown = false;
         }
 
         window.display();

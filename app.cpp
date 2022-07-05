@@ -13,6 +13,12 @@
 
 //#define DEBUG
 
+cboard *board;
+
+void handl_click(Vector2i p){
+    board->handle_click(p);
+}
+
 int main()
 {
     cwindow window(512, 512, "Chess");
@@ -30,9 +36,11 @@ int main()
 
     Texture boardTxt;
     boardTxt.loadFromFile("board.png");
-    cboard board(window.active_sprites, boardTxt);
+    cboard theboard(window.active_sprites, boardTxt);
+    board = &theboard;
     string fen = "r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1";
-    board.initialize(fen, window);
+    board->initialize(fen, window);
+    window.clickhandler = &handl_click;
 
     window.MLoop();
 
