@@ -39,12 +39,16 @@ public:
     bool color; // true white, false black
     csprite pieceSprite; 
     cpiece(vector<csprite>& v, int t, int p, Vector2i pixelp, const Texture& texture);
-    void movePiece();
+    void movePiece(int newPose, Vector2i newPixelPose);
 
 };
 
-void cpiece::movePiece(){
-    
+void cpiece::movePiece(int newPose, Vector2i newPixelPose)
+{
+    position = newPose;
+    pieceSprite.deactivate();
+    pieceSprite.sprite.setPosition(newPixelPose.x , newPixelPose.y);
+    pieceSprite.activate();
 }
 
 cpiece::cpiece(vector<csprite>& v, int t, int p, Vector2i pixelp, const Texture& texture):

@@ -41,6 +41,9 @@ public:
 
     void remove_piece(int p);
     vector<cpiece> piece_on_board;
+    
+    bool is_piece_chosen = false;
+    cpiece* chosenPiece;
 
     csprite boardSprite;
     Texture piecesTexture;
@@ -57,11 +60,19 @@ void cboard::handle_click(Vector2i p){
     cout << p.x << ", " << p.y <<"   ";
     cout << x << ", " << y << " = " << y * 8 + x << endl;
 
-    for(int i = 0; i < piece_on_board.size(); i++)
+    if(is_piece_chosen)
     {
-        if(piece_on_board[i].position == pose)
+        chosenPiece->movePiece(pose, getpixelposition(pose));
+        is_piece_chosen = false;
+    }else
+    {
+        for(int i = 0; i < piece_on_board.size(); i++)
         {
-         remove_piece(pose);
+            if(piece_on_board[i].position == pose)
+            {
+                is_piece_chosen = true;
+                chosenPiece = &piece_on_board[i];
+            }
         }
     }
 }
